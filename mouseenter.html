@@ -92,9 +92,17 @@ document.getElementById('main').addEventListener('click', function updatecount()
 
       function colourElements()
       {
-        if (headercount > 5)
+        if (headercount > 15)
         {
           document.getElementById('header').style="background-color:red;";
+        }
+        else if (headercount > 10)
+        {
+          document.getElementById('header').style="background-color:orange;";
+        }
+        else if (headercount > 5)
+        {
+          document.getElementById('header').style="background-color:green;";
         }
       }
     </script>
