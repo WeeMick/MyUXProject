@@ -9,8 +9,8 @@
 </head>
 <body>
   <div id="container">
-  <header>Header
-  Github is getting working...sort of</header>
+  <header>
+  Index</header>
   <main>Main
     <div class="example">First div element with class="example".</div>
     <p class ="example">Second p element with class="example"</p>
@@ -25,7 +25,6 @@
     	var changeText = document.getElementById('event');
         changeText.textContent = "eventReached";
     }
-
 
     //Gets all elements with class name
       var x = document.getElementsByClassName("example");
@@ -50,7 +49,7 @@
     function showCoords(event) {
       var x = event.clientX;
       var y = event.clientY;
-      var coords[];
+      //var coords[];
       var coords = "X coords: " + x + ", Y coords: " + y;
       document.getElementById("demo").innerHTML = coords;
     });
@@ -112,6 +111,9 @@ function showArrayCoords(coords) {
 
   </aside>
   <nav>Nav
+    <br><a href="coords.html">Cordinates</a>
+    <br><a href="coords.html">Click Coordinates</a>
+    <br><a href="mouseenter.html">Mouse Enter</a>
     <div>
         <h3>Counters</h3>
         <label>Mouseover </label><label id="mouseovercounter">0</label>
@@ -158,6 +160,40 @@ function showArrayCoords(coords) {
 
   </nav>
   <footer>Footer
+    <br>
+
+    <!-- Show the current corordinates of the mouse on the screen -->
+    <script>
+    function getMousePos(e) {
+       return {x:e.clientX,y:e.clientY};
+   }
+   document.onmousemove=function(e) {
+        var mousecoords = getMousePos(e);
+        document.getElementById('footermove').innerHTML = mousecoords.x + " " + mousecoords.y;
+
+// Get the number of HTML elements on the page
+// You could then use this number to loop through each element, extract its name,
+// get number of mouse clicks etc
+        var all = document.querySelectorAll("*");
+        var elements = "Name of elements";
+        document.getElementById('NoOfElements').innerHTML = "No of elements on page: " + all.length;
+
+        var i;
+        for (i=0; i < all.length; i++)
+        {
+          elements += all[i] + " ";
+          document.getElementById("NameOfElements").innerHTML = elements;
+        }
+
+   };
+
+
+   </script>
+   <p></p>
+   <p id="footermove">Move</p>
+
+   <p id="NoOfElements">0</p>
+   <p id="NameOfElements">Name Of Elements</p>
      </footer>
 </body>
 </html>

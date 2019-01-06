@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet type="text/css"" href="style.css">
+  <title>Template</title>
+</head>
+<body>
+  <div id="container">
+  <header>Click Coordinates</header>
+  <main>Main
+        <h2 id="clickcoords" onclick="showCoords(event)">Click this heading to get the x (horizontal) and y (vertical) coordinates of the mouse pointer when it was clicked.</h2>
+
+        <p><strong>Tip:</strong> Try to click different places in the heading.</p>
+
+        <p id="demo"></p>
+
+        <script>
+        document.getElementById('clickcoords').addEventListener('mousemove',
+        function showCoords(event) {
+          var x = event.clientX;
+          var y = event.clientY;
+          //var coords[];
+          var coords = "X coords: " + x + ", Y coords: " + y;
+          document.getElementById("demo").innerHTML = coords;
+        });
+        </script>
+
+
+    <script>
+    var x = document.getElementById("clickcoords");
+    // or
+    // var x = document.body;
+
+    var offsetX = x.offsetLeft;
+    var offsetY = x.offsetTop;
+    x.addEventListener('click', handleClick, false);
+
+    // array to store click coords
+    var clickCoords = [];
+
+    var ClickPoint = function(x, y) {
+      this.x = x;
+      this.y = y;
+    };
+
+    ClickPoint.prototype.toString = function(){
+       return "(" + this.x + ", " + this.y + ")";
+    }
+
+    function handleClick(e) {
+      mouseX = parseInt(e.clientX - offsetX);
+      mouseY = parseInt(e.clientY - offsetY);
+
+      // create click point and store it in array
+      var aClick = new ClickPoint(mouseX, mouseY);
+      clickCoords.push(aClick);
+
+      // update results
+      showArrayCoords(clickCoords);
+    }
+
+    function showArrayCoords(coords) {
+      var innerHtml = 'You clicked at:<br/>';
+      for (i = 0; i < coords.length; i++) {
+        innerHtml += coords[i];
+      }
+      document.getElementById("results").innerHTML = innerHtml;
+    }
+    </script>
+    <p id="results">result</p>
+  </main>
+
+  <section>Section
+  </section>
+
+  <aside>Aside
+  </aside>
+  <nav>Nav
+
+<br><a href="index.html">Index</a>
+<br><a href="mousemovecoords.html">Mouse Move Coordinates</a>
+<br><a href="mouseenter.html">Mouse Enter</a></nav>
+  </nav>
+  <footer>Footer
+     </footer>
+</body>
+</html>

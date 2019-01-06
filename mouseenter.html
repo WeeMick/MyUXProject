@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet type="text/css"" href="style.css">
+  <title>Tester</title>
+</head>
+<body>
+  <div id="container">
+  <header id ="header">Mouse Enter Coordinates<div id="headertotals">
+  Header Clicks
+  </div>
+  <script>
+  var headercount = 0;
+  document.getElementById('header').addEventListener('click', function updatecount(){
+    headercount += 1;
+    document.getElementById('headertotals').innerHTML = headercount;
+  }, false);
+  </script>
+</header>
+  <main id="main">Main
+<div id="maintotals">
+Main Clicks
+</div>
+<script>
+var maincount = 0;
+document.getElementById('main').addEventListener('click', function updatecount(){
+  maincount += 1;
+  document.getElementById('maintotals').innerHTML = maincount;
+}, false);
+</script>
+ </main>
+  <section id="section">Section<br><br>
+    <div id="sectiontotals">
+    Section Clicks
+    </div>
+    <script>
+    var sectioncount = 0;
+    document.getElementById('section').addEventListener('click', function updatecount(){
+      sectioncount += 1;
+      document.getElementById('sectiontotals').innerHTML = sectioncount;
+    }, false);
+    </script>
+
+  </section>
+  <aside id="aside">Aside
+    <div id="asidetotals">
+    Aside Clicks
+    </div>
+    <script>
+    var asidecount = 0;
+    document.getElementById('aside').addEventListener('click', function updatecount(){
+      asidecount += 1;
+      document.getElementById('asidetotals').innerHTML = asidecount;
+    }, false);
+    </script>
+  </aside>
+  <nav id="nav">Nav
+    <br><a href="index.html">Index</a>
+    <br><a href="coords.html">Click Coordinates</a>
+    <br><a href="mousemovecoords.html">Mouse Move</a><br>
+
+    <br><div id="navtotals">
+    Nav Clicks
+    </div>
+    <script>
+    var navcount = 0;
+    document.getElementById('nav').addEventListener('click', function updatecount(){
+      navcount += 1;
+      document.getElementById('navtotals').innerHTML = navcount;
+    }, false);
+    </script>
+  </nav>
+  <footer id="foot">Footer
+    <br><div id="foottotals">
+    Footer Clicks
+    </div>
+    <script>
+    var footcount = 0;
+    document.getElementById('foot').addEventListener('click', function updatecount(){
+      footcount += 1;
+      document.getElementById('foottotals').innerHTML = footcount;
+    }, false);
+    </script>
+
+
+    <button id="calculate" onclick="colourElements()">Calculate</button>
+
+    <script>
+
+      function colourElements()
+      {
+        if (headercount > 15)
+        {
+          document.getElementById('header').style="background-color:red;";
+        }
+        else if (headercount > 10)
+        {
+          document.getElementById('header').style="background-color:orange;";
+        }
+        else if (headercount > 5)
+        {
+          document.getElementById('header').style="background-color:green;";
+        }
+      }
+    </script>
+  </footer>
+
+</body>
+</html>
