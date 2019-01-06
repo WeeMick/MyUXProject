@@ -84,6 +84,20 @@ document.getElementById('main').addEventListener('click', function updatecount()
       document.getElementById('foottotals').innerHTML = footcount;
     }, false);
     </script>
+
+
+    <button id="calculate" onclick="colourElements()">Calculate</button>
+
+    <script>
+
+      function colourElements()
+      {
+        if (headercount > 5)
+        {
+          document.getElementById('header').style="background-color:red;";
+        }
+      }
+    </script>
   </footer>
 
 </body>
