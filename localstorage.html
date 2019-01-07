@@ -6,28 +6,24 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet type="text/css"" href="style.css">
   <title>Template</title>
+<script type="text/javascript">
+
+function setLocalStorage(k, v) {
+  localStorage.setItem(k, v);
+}
+  window.onload = setLocalStorage();
+</script>
+
 </head>
 <body>
   <div id="container">
   <header>Mouse Move Coordinates</header>
   <main>Main
-        <h2 id="clickcoords" onclick="showCoords(event)">Click this heading to get the x (horizontal) and y (vertical) coordinates of the mouse pointer when it was clicked.</h2>
+        <h2 id="clickcoords" onclick="handleClick(event)">Click this heading to get the x (horizontal) and y (vertical) coordinates of the mouse pointer when it was clicked.</h2>
 
         <p><strong>Tip:</strong> Try to click different places in the heading.</p>
 
         <p id="demo"></p>
-
-        <script>
-        document.getElementById('clickcoords').addEventListener('click',
-        function showCoords(event) {
-          var x = event.clientX;
-          var y = event.clientY;
-          //var coords[];
-          var coords = "X coords: " + x + ", Y coords: " + y;
-          document.getElementById("demo").innerHTML = coords;
-        });
-        </script>
-
 
     <script>
     var x = document.getElementById("clickcoords");
@@ -60,12 +56,15 @@
 
       // update results
       showArrayCoords(clickCoords);
-    }
+}
+
+
 
     function showArrayCoords(coords) {
       var innerHtml = '<table><th>Click Co-ordinates (x,y)</th><tr>';
       for (i = 0; i < coords.length; i++) {
         innerHtml += "<td>" + coords[i] + "<td></tr><tr>";
+        setLocalStorage("Coordinate" + i, coords[i]);
       }
       document.getElementById("results").innerHTML = innerHtml;
     }
@@ -77,13 +76,33 @@
   </section>
 
   <aside>Aside
+    <script>
+function clickCounter() {
+  if (typeof(Storage) !== "undefined") {
+    if (localStorage.clickcount) {
+      localStorage.clickcount = Number(localStorage.clickcount)+1;
+    } else {
+      localStorage.clickcount = 1;
+    }
+    document.getElementById("result").innerHTML = "You have clicked the button " + localStorage.clickcount + " time(s).";
+  } else {
+    document.getElementById("result").innerHTML = "Sorry, your browser does not support web storage...";
+  }
+}
+</script>
+
+<p><button onclick="clickCounter()" type="button">Click me!</button></p>
+<div id="result"></div>
+<p>Click the button to see the counter increase.</p>
+<p>Close the browser tab (or window), and try again, and the counter will continue to count (is not reset).</p>
   </aside>
   <nav>Nav
 <br><a href="index.html">Index</a><br>
 <br><a href="coords.html">Click Coordinates</a><br>
 <br><a href="mouseenter.html">Mouse Enter</a><br>
-<br><a href="localstorage.html">Local Storage</a><br>
+<br><a href="mousemovecoords.html">Mouse Move Coordinates</a><br>
 <br><a href="localstorageresults.html">Local Storage Results</a><br>
+<br><a href="test.html">Test</a><br>
 
 
   </nav>

@@ -6,107 +6,126 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet type="text/css"" href="style.css">
   <title>Tester</title>
+
 </head>
 <body>
   <div id="container">
-  <header id ="header">Mouse Enter Coordinates<div id="headertotals">
-  Header Clicks
-  </div>
-  <script>
-  var headercount = 0;
-  document.getElementById('header').addEventListener('click', function updatecount(){
-    headercount += 1;
-    document.getElementById('headertotals').innerHTML = headercount;
-  }, false);
-  </script>
-</header>
+    <header id="header">Header<div id="headertotals">
+      Header Clicks
+    </div>
+
+  </header>
   <main id="main">Main
-<div id="maintotals">
-Main Clicks
-</div>
-<script>
-var maincount = 0;
-document.getElementById('main').addEventListener('click', function updatecount(){
-  maincount += 1;
-  document.getElementById('maintotals').innerHTML = maincount;
-}, false);
-</script>
- </main>
-  <section id="section">Section<br><br>
-    <div id="sectiontotals">
+    <div id="maintotals">
+      Main Clicks
+    </div>
+
+  <test id="test">
+    <br> TEST SECTION
+    <div id="testtotals">
+    <br>Test Clicks
+  </div>
+</test>
+<!-- <script>
+  var testID = document.getElementById('test');
+  var testTot = 0;
+  testID.addEventListener('click', function updateTest(){
+    testTot += 1;
+    document.getElementById('testtotals').innerHTML = testTot;
+  }, false);
+
+</script> -->
+
+</main>
+
+<section id="section">Section<br><br>
+  <div id="sectiontotals">
     Section Clicks
-    </div>
-    <script>
-    var sectioncount = 0;
-    document.getElementById('section').addEventListener('click', function updatecount(){
-      sectioncount += 1;
-      document.getElementById('sectiontotals').innerHTML = sectioncount;
-    }, false);
-    </script>
+  </div>
 
-  </section>
-  <aside id="aside">Aside
-    <div id="asidetotals">
+</section>
+<aside id="aside">Aside
+  <div id="asidetotals">
     Aside Clicks
-    </div>
-    <script>
-    var asidecount = 0;
-    document.getElementById('aside').addEventListener('click', function updatecount(){
-      asidecount += 1;
-      document.getElementById('asidetotals').innerHTML = asidecount;
-    }, false);
-    </script>
-  </aside>
-  <nav id="nav">Nav
-    <br><a href="index.html">Index</a>
-    <br><a href="coords.html">Click Coordinates</a>
-    <br><a href="mousemovecoords.html">Mouse Move</a><br>
+  </div>
+</aside>
 
-    <br><div id="navtotals">
+<nav id="nav">Nav
+  <br><a href="index.html">Index</a><br>
+  <br><a href="coords.html">Click Coordinates</a><br>
+  <br><a href="mousemovecoords.html">Mouse Move</a><br>
+  <br><a href="localstorage.html">Local Storage</a><br>
+  <br><a href="localstorageresults.html">Local Storage Results</a><br>
+
+  <br><div id="navtotals">
     Nav Clicks
-    </div>
-    <script>
-    var navcount = 0;
-    document.getElementById('nav').addEventListener('click', function updatecount(){
-      navcount += 1;
-      document.getElementById('navtotals').innerHTML = navcount;
-    }, false);
-    </script>
-  </nav>
-  <footer id="foot">Footer
-    <br><div id="foottotals">
+  </div>
+</nav>
+
+<footer id="foot">Footer
+  <br><div id="foottotals">
     Footer Clicks
-    </div>
-    <script>
-    var footcount = 0;
-    document.getElementById('foot').addEventListener('click', function updatecount(){
-      footcount += 1;
-      document.getElementById('foottotals').innerHTML = footcount;
-    }, false);
-    </script>
+  </div>
+  <button id="calculate" onclick="colourElements()">Calculate</button>
 
+  <script>
 
-    <button id="calculate" onclick="colourElements()">Calculate</button>
+  function colourElements()
+  {
+    if (headercount > 15)
+    {
+      document.getElementById('header').style="background-color:red;";
+    }
+    else if (headercount > 10)
+    {
+      document.getElementById('header').style="background-color:orange;";
+    }
+    else if (headercount > 5)
+    {
+      document.getElementById('header').style="background-color:green;";
+    }
+  }
+  </script>
+</footer>
+<script>
+var elIDList = ['test','header', 'nav', 'main', 'aside', 'section', 'footer'];
+var elCount = 0;
+var i;
+var elTotals;
 
-    <script>
+for (i = 0; i < elIDList.length; i++)
+{
+  document.getElementById('testtotals').innerHTML += elIDList[i] + ", ";
+  var elID = elIDList[i];
+  var el = document.getElementById(elID);
+//document.getElementById('testtotals').innerHTML += el;
+if(el){
+    el.addEventListener('click', updatecount(), false);
+}
+};
 
-      function colourElements()
-      {
-        if (headercount > 15)
-        {
-          document.getElementById('header').style="background-color:red;";
-        }
-        else if (headercount > 10)
-        {
-          document.getElementById('header').style="background-color:orange;";
-        }
-        else if (headercount > 5)
-        {
-          document.getElementById('header').style="background-color:green;";
-        }
-      }
-    </script>
-  </footer>
+function updatecount(){
+  elTotals = elID + "totals";
+  elCount += 1;
+  document.getElementById('testtotals').innerHTML = elTotals;
 
+document.getElementById('elTotals').innerHTML = elCount;
+}
+</script>
+<!-- <script>
+
+function getElID()
+{
+
+}
+function addListeners(elID, IDCount){
+document.getElementById(elID).addEventListener('click', function updatecount(){
+IDCount += 1;
+document.getElementById('foottotals').innerHTML = IDCount;
+}, false);
+}
+
+window.onLoad = addListeners;
+</script> -->
 </body>
 </html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+
+<p id="work">
+gfhgfhfhfhfhfh
+</p>
+<script>
+document.getElementById("work").innerHTML = "You have clicked the button " + localStorage.clickcount + " time(s).";
+</script>
+
+<button onclick="getCoords()"> Click here</button><br>
+
+<div id="array">
+Array Coordinates will go here
+</div>
+
+<script>
+function getCoords()
+{
+for (var i = 0; i < localStorage.length; i++){
+    document.getElementById('array').innerHTML += localStorage.getItem(localStorage.key(i)) +"<br>";
+}
+}
+  // var storedData = localstorage.getItem("list_data_key");
+  // if (storedData)
+  // {
+  //   clickCoords = JSON.parse(storedData);
+  //   document.getElementById('array').innerHTML = clickCoords[i];
+  // }
+</script>
+</body>
+</html>
