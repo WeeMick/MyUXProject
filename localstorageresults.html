@@ -1,41 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet type="text/css"" href="style.css">
-  <title>Template</title>
 </head>
 <body>
-  <div id="container">
-  <header>Local Storage Results</header>
-  <main>Main
-        <div id="resultstest">
-            Coordinates should appear here
-        </div>
-  </main>
+<p id="work">
+gfhgfhfhfhfhfh
+</p>
+<script>
+document.getElementById("work").innerHTML = "You have clicked the button " + localStorage.clickcount + " time(s).";
+</script>
 
-  <script>
-    var first = localstorage.key;
+<button onclick="getCoords()">Click here to view click coordinates</button><br>
 
-    document.getElementById('resultstest').innerHTML = first;
-  </script>
+<div id="array">
+Array Coordinates
+</div>
 
-  <section>Section
-  </section>
+<!--Create a table with all coordinates(stored in local storage) from mouseclicks from localstorage.html  -->
+<script>
+function getCoords()
+{
+  var innerHtml = '<table><th>Click Co-ordinates (x,y)</th><tr>';
+for (var i = 0; i < localStorage.length; i++){
+    innerHtml += "<td>" + localStorage.getItem(localStorage.key(i)) +"<td></tr><tr>";
+    document.getElementById("array").innerHTML = innerHtml;
+}
+}
+</script>
 
-  <aside>Aside
-  </aside>
-  <nav>Nav
-<br><a href="index.html">Index</a><br>
-<br><a href="coords.html">Click Coordinates</a><br>
-<br><a href="mousemovecoords.html">Mouse Move Coordinates</a><br>
-<br><a href="mouseenter.html">Mouse Enter</a><br>
-<br><a href="localstorage.html">Local Storage</a>
+<!-- Clear table of coordinates from local storage -->
+<!-- Function not working properly, it only reduces the array by half each click -->
+<button onclick="clearCoordinates()">Clear Click Cooordinates Data</button>
+<script type="text/javascript">
+function clearCoordinates()
+{
+  //if (typeof localstorage.length !== "undefined" )
 
-  </nav>
-  <footer>Footer
-     </footer>
+  for (var i = 0; i < localStorage.length; i++)
+  {
+    localStorage.removeItem(localStorage.key(i));
+  }
+  //alert('All Click-Coordinates Removed');
+  location.reload();
+// }
+// else {
+//   {
+//     alert('No coordinates to be removed');
+  //}
+}
+</script>
+
 </body>
 </html>

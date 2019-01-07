@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mouse Idle</title>
+  <style>
+    #counter {
+      width: 100px;
+      height: 100px;
+      background-color: blue;
+    }
+
+    #counter2 {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+    }
+  </style>
+  <script type="text/javascript">
+  var d, newid, set;
+  const time = 1000;
+  </script>
+</head>
+<body>
+<div id="counter" onmouseenter="timer(this)"; onmouseleave="stoptimer(this)">
+  0
+</div>
+<div id="counter2" onmouseenter="timer(this)"; onmouseleave="stoptimer(this)">
+0
+</div>
+
+
+<script>
+
+  function timer(e)
+  {
+    id = e.id;
+
+    d = true;
+    set = setInterval("count(id)", time);
+
+  };
+
+  function count(e)
+  {
+    newid = e;
+    if (d == true)
+    {
+      console.log('id = ' + newid);
+      document.getElementById(newid).innerHTML++;
+    }
+  };
+
+  function stoptimer()
+  {
+    clearTimeout(set);
+    d = false;
+  }
+</script>
+</body>
+</html>
