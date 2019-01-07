@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet type="text/css"" href="style.css">
+  <title>Template</title>
+  <style>
+  body {
+    height: 3000px;
+  }
+  .dot {
+    width: 10px;
+    height: 10px;
+    background-color: black;
+    position: absolute;
+  }
+</style>
+
+</head>
+<body>
+  <script>
+  (function() {
+    //"use strict";
+
+    document.onmousemove = handleMouseMove;
+    function handleMouseMove(event) {
+      var dot, eventDoc, doc, body, pageX, pageY;
+
+      event = event || window.event; // IE-ism
+
+      // If pageX/Y aren't available and clientX/Y
+      // are, calculate pageX/Y - logic taken from jQuery
+      // Calculate pageX/Y if missing and clientX/Y available
+      if (event.pageX == null && event.clientX != null) {
+        eventDoc = (event.target && event.target.ownerDocument) || document;
+        doc = eventDoc.documentElement;
+        body = eventDoc.body;
+
+        event.pageX = event.clientX +
+          (doc && doc.scrollLeft || body && body.scrollLeft || 0) -
+          (doc && doc.clientLeft || body && body.clientLeft || 0);
+        event.pageY = event.clientY +
+          (doc && doc.scrollTop  || body && body.scrollTop  || 0) -
+          (doc && doc.clientTop  || body && body.clientTop  || 0 );
+      }
+
+      // Add a dot to follow the cursor
+      dot = document.createElement('div');
+      dot.className = "dot";
+      dot.style.left = event.pageX + "px";
+      dot.style.top = event.pageY + "px";
+      document.body.appendChild(dot);
+    }
+  })();
+  </script>
+  <div id="container">
+
+  <header>
+  IndexDot</header>
+  <main>Main
+    <div class="example">First div element with class="example".</div>
+    <p class ="example">Second p element with class="example"</p>
+    <div class="example">Second div element with class="example".</div>
+
+    <p id="event">Test</p>
+
+    <script>
+
+    //Function to change text on mouse click event
+    function checkUsername() {
+    	var changeText = document.getElementById('event');
+        changeText.textContent = "eventReached";
+    }
+
+    //Gets all elements with class name
+      var x = document.getElementsByClassName("example");
+
+    //applies event listener to first selected element
+      x[0].addEventListener('mouseover', checkUsername, false); //will change text on mouseover
+
+    </script>
+
+  </main>
+
+  <section>Section
+
+    <h2 id="clickcoords" onclick="showCoords(event)">Click this heading to get the x (horizontal) and y (vertical) coordinates of the mouse pointer when it was clicked.</h2>
+
+    <p><strong>Tip:</strong> Try to click different places in the heading.</p>
+
+    <p id="demo"></p>
+
+    <script>
+    document.getElementById('clickcoords').addEventListener('mousemove',
+    function showCoords(event) {
+      var x = event.clientX;
+      var y = event.clientY;
+      //var coords[];
+      var coords = "X coords: " + x + ", Y coords: " + y;
+      document.getElementById("demo").innerHTML = coords;
+    });
+    </script>
+
+
+<script>
+var x = document.getElementById("clickcoords");
+// or
+// var x = document.body;
+
+var offsetX = x.offsetLeft;
+var offsetY = x.offsetTop;
+x.addEventListener('click', handleClick, false);
+
+// array to store click coords
+var clickCoords = [];
+
+var ClickPoint = function(x, y) {
+  this.x = x;
+  this.y = y;
+};
+
+ClickPoint.prototype.toString = function(){
+   return "(" + this.x + ", " + this.y + ")";
+}
+
+function handleClick(e) {
+  mouseX = parseInt(e.clientX - offsetX);
+  mouseY = parseInt(e.clientY - offsetY);
+
+  // create click point and store it in array
+  var aClick = new ClickPoint(mouseX, mouseY);
+  clickCoords.push(aClick);
+
+  // update results
+  showArrayCoords(clickCoords);
+}
+
+function showArrayCoords(coords) {
+  var innerHtml = 'You clicked at:<br/>';
+  for (i = 0; i < coords.length; i++) {
+    innerHtml += coords[i];
+  }
+  document.getElementById("results").innerHTML = innerHtml;
+}
+</script>
+<p id="results">result</p>
+  </section>
+
+  <aside>Aside
+<div id="profilepic">
+      <img src="images/linkedinprofile.png" style="width:100px;height:100px;">
+</div>
+
+<div id="loki">
+      <img src="images/loki.jpg" style="width:100px;height:100px;">
+</div>
+
+  </aside>
+  <nav>Nav
+    <br><a href="coords.html">Cordinates</a><br>
+    <br><a href="mousemovecoords.html">Mouse Move Coordinates</a><br>
+    <br><a href="mouseenter.html">Mouse Enter</a><br>
+    <br><a href="localstorage.html">Local Storage</a><br>
+    <br><a href="localstorageresults.html">Local Storage Results</a><br>
+    <div>
+        <h3>Counters</h3>
+        <label>Mouseover </label><label id="mouseovercounter">0</label>
+        <label>Mouseclick </label><label id="mouseclickcounter">0</label>
+        <label>Mousemove </label><label id="mousemovecounter">0</label>
+        <br><label>Type </label><label id="type"></label>
+
+        <script>
+        var i = 0;
+        function onmouseover(event)
+        {
+          i += 1;
+
+          document.getElementById('mouseovercounter').innerHTML = i;
+          // document.getElementById('type').innerHTML = nameOfElement;
+        }
+        document.getElementById('profilepic').addEventListener('mouseover', onmouseover, false)
+    </script>
+
+    <script>
+    var j = 0;
+    function onclick(event)
+    {
+      j += 1;
+      document.getElementById('mouseclickcounter').innerHTML = j;
+      var element_type = event.target.tagName;
+
+      document.getElementById('type').innerHTML = element_type;
+    }
+    document.getElementById('profilepic').addEventListener('click', onclick, false)
+    </script>
+
+    <script>
+    var k = 0;
+    function onclick(event)
+    {
+      k += 1;
+      document.getElementById('mousemovecounter').innerHTML = k;
+    }
+    document.getElementById('profilepic').addEventListener('mousemove', onclick, false)
+    </script>
+
+  </div>
+
+  </nav>
+  <footer>Footer
+    <br>
+
+    <!-- Show the current corordinates of the mouse on the screen -->
+    <script>
+    function getMousePos(e) {
+       return {x:e.clientX,y:e.clientY};
+   }
+   document.onmousemove=function(e) {
+        var mousecoords = getMousePos(e);
+        document.getElementById('footermove').innerHTML = mousecoords.x + " " + mousecoords.y;
+
+// Get the number of HTML elements on the page
+// You could then use this number to loop through each element, extract its name,
+// get number of mouse clicks etc
+        var all = document.querySelectorAll("*");
+        var elements = "Name of elements";
+        document.getElementById('NoOfElements').innerHTML = "No of elements on page: " + all.length;
+
+        var i;
+        for (i=0; i < all.length; i++)
+        {
+          elements += all[i] + " ";
+          document.getElementById("NameOfElements").innerHTML = elements;
+        }
+
+   };
+
+
+   </script>
+   <p></p>
+   <p id="footermove">Move</p>
+
+   <p id="NoOfElements">0</p>
+   <p id="NameOfElements">Name Of Elements</p>
+     </footer>
+</body>
+</html>
