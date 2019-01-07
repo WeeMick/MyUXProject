@@ -11,25 +11,45 @@ gfhgfhfhfhfhfh
 document.getElementById("work").innerHTML = "You have clicked the button " + localStorage.clickcount + " time(s).";
 </script>
 
-<button onclick="getCoords()"> Click here</button><br>
+<button onclick="getCoords()">Click here to view click coordinates</button><br>
 
 <div id="array">
-Array Coordinates will go here
+Array Coordinates
 </div>
 
+<!--Create a table with all coordinates(stored in local storage) from mouseclicks from localstorage.html  -->
 <script>
 function getCoords()
 {
+  var innerHtml = '<table><th>Click Co-ordinates (x,y)</th><tr>';
 for (var i = 0; i < localStorage.length; i++){
-    document.getElementById('array').innerHTML += localStorage.getItem(localStorage.key(i)) +"<br>";
+    innerHtml += "<td>" + localStorage.getItem(localStorage.key(i)) +"<td></tr><tr>";
+    document.getElementById("array").innerHTML = innerHtml;
 }
 }
-  // var storedData = localstorage.getItem("list_data_key");
-  // if (storedData)
-  // {
-  //   clickCoords = JSON.parse(storedData);
-  //   document.getElementById('array').innerHTML = clickCoords[i];
-  // }
+</script>
+
+<!-- Clear table of coordinates from local storage -->
+<!-- Function not working properly, it only reduces the array by half each click -->
+<button onclick="clearCoordinates()">Clear Click Cooordinates Data</button>
+<script type="text/javascript">
+function clearCoordinates()
+{
+  //if (typeof localstorage.length !== "undefined" )
+
+  for (var i = 0; i < localStorage.length; i++)
+  {
+    localStorage.removeItem(localStorage.key(i));
+  }
+  alert('All Click-Coordinates Removed');
+  location.reload();
+// }
+// else {
+//   {
+//     alert('No coordinates to be removed');
+  //}
+}
+
 </script>
 </body>
 </html>

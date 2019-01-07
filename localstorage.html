@@ -5,108 +5,105 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet type="text/css"" href="style.css">
-  <title>Template</title>
-<script type="text/javascript">
+  <title>Local Storage</title>
+  <script type="text/javascript">
 
-function setLocalStorage(k, v) {
-  localStorage.setItem(k, v);
-}
-  window.onload = setLocalStorage();
+  function setLocalStorage(k, v) {
+    localStorage.setItem(k, v);
+  }
+
 </script>
 
 </head>
 <body>
   <div id="container">
-  <header>Mouse Move Coordinates</header>
-  <main>Main
-        <h2 id="clickcoords" onclick="handleClick(event)">Click this heading to get the x (horizontal) and y (vertical) coordinates of the mouse pointer when it was clicked.</h2>
+    <header>Mouse Move Coordinates</header>
+    <main>Main
+      <h2 id="clickcoords" onclick="handleClick(event)">Click this heading to get the x (horizontal) and y (vertical) coordinates of the mouse pointer when it was clicked.</h2>
 
-        <p><strong>Tip:</strong> Try to click different places in the heading.</p>
+      <p><strong>Tip:</strong> Try to click different places in the heading.</p>
 
-        <p id="demo"></p>
+      <p id="results"></p>
 
-    <script>
-    var x = document.getElementById("clickcoords");
-    // or
-    // var x = document.body;
+      <script>
+      var x = document.getElementById("clickcoords");
+      // or
+      // var x = document.body;
 
-    var offsetX = x.offsetLeft;
-    var offsetY = x.offsetTop;
-    x.addEventListener('click', handleClick, false);
+      var offsetX = x.offsetLeft;
+      var offsetY = x.offsetTop;
+      x.addEventListener('click', handleClick, false);
 
-    // array to store click coords
-    var clickCoords = [];
+      // array to store click coords
+      var clickCoords = [];
 
-    var ClickPoint = function(x, y) {
-      this.x = x;
-      this.y = y;
-    };
+      var ClickPoint = function(x, y) {
+        this.x = x;
+        this.y = y;
+      };
 
-    ClickPoint.prototype.toString = function(){
-       return "(" + this.x + ", " + this.y + ")";
-    }
-
-    function handleClick(e) {
-      mouseX = parseInt(e.clientX - offsetX);
-      mouseY = parseInt(e.clientY - offsetY);
-
-      // create click point and store it in array
-      var aClick = new ClickPoint(mouseX, mouseY);
-      clickCoords.push(aClick);
-
-      // update results
-      showArrayCoords(clickCoords);
-}
-
-
-
-    function showArrayCoords(coords) {
-      var innerHtml = '<table><th>Click Co-ordinates (x,y)</th><tr>';
-      for (i = 0; i < coords.length; i++) {
-        innerHtml += "<td>" + coords[i] + "<td></tr><tr>";
-        setLocalStorage("Coordinate" + i, coords[i]);
+      ClickPoint.prototype.toString = function(){
+        return "(" + this.x + ", " + this.y + ")";
       }
-      document.getElementById("results").innerHTML = innerHtml;
-    }
+
+      function handleClick(e) {
+        mouseX = parseInt(e.clientX - offsetX);
+        mouseY = parseInt(e.clientY - offsetY);
+
+        // create click point and store it in array
+        var aClick = new ClickPoint(mouseX, mouseY);
+        clickCoords.push(aClick);
+
+        // update results
+        showArrayCoords(clickCoords);
+      }
+
+      function showArrayCoords(coords) {
+        var innerHtml = '<table><th>Click Co-ordinates (x,y)</th>';
+        for (i = 0; i < coords.length; i++) {
+          innerHtml += "<tr><td>" + coords[i] + "</td></tr>";
+          setLocalStorage("Coordinate" + i, coords[i]);
+        }
+        document.getElementById("results").innerHTML = innerHtml;
+      }
+      </script>
+    </main>
+
+    <section>Section
+    </section>
+
+    <aside>Aside
+      <script>
+      function clickCounter() {
+        if (typeof(Storage) !== "undefined") {
+          if (localStorage.clickcount) {
+            localStorage.clickcount = Number(localStorage.clickcount)+1;
+          } else {
+            localStorage.clickcount = 1;
+          }
+          document.getElementById("result").innerHTML = "You have clicked the button " + localStorage.clickcount + " time(s).";
+        } else {
+          document.getElementById("result").innerHTML = "Sorry, your browser does not support web storage...";
+        }
+      }
     </script>
-    <table id="results"></table>
-  </main>
 
-  <section>Section
-  </section>
-
-  <aside>Aside
-    <script>
-function clickCounter() {
-  if (typeof(Storage) !== "undefined") {
-    if (localStorage.clickcount) {
-      localStorage.clickcount = Number(localStorage.clickcount)+1;
-    } else {
-      localStorage.clickcount = 1;
-    }
-    document.getElementById("result").innerHTML = "You have clicked the button " + localStorage.clickcount + " time(s).";
-  } else {
-    document.getElementById("result").innerHTML = "Sorry, your browser does not support web storage...";
-  }
-}
-</script>
-
-<p><button onclick="clickCounter()" type="button">Click me!</button></p>
-<div id="result"></div>
-<p>Click the button to see the counter increase.</p>
-<p>Close the browser tab (or window), and try again, and the counter will continue to count (is not reset).</p>
+    <p><button onclick="clickCounter()" type="button">Click me!</button></p>
+    <div id="result"></div>
+    <p>Click the button to see the counter increase.</p>
+    <p>Close the browser tab (or window), and try again, and the counter will continue to count (is not reset).</p>
   </aside>
   <nav>Nav
-<br><a href="index.html">Index</a><br>
-<br><a href="coords.html">Click Coordinates</a><br>
-<br><a href="mouseenter.html">Mouse Enter</a><br>
-<br><a href="mousemovecoords.html">Mouse Move Coordinates</a><br>
-<br><a href="localstorageresults.html">Local Storage Results</a><br>
-<br><a href="test.html">Test</a><br>
+    <br><a href="index.html">Index</a><br>
+    <br><a href="coords.html">Click Coordinates</a><br>
+    <br><a href="mouseenter.html">Mouse Enter</a><br>
+    <br><a href="mousemovecoords.html">Mouse Move Coordinates</a><br>
+    <br><a href="localstorageresults.html">Local Storage Results</a><br>
+    <br><a href="test.html">Test</a><br>
 
 
   </nav>
   <footer>Footer
-     </footer>
+  </footer>
 </body>
 </html>
