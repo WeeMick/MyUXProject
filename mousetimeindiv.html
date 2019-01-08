@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+<!-- This page calculates each time the mouse enters a div -->
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Mouse Idle</title>
+  <title>Mouse Time In Div</title>
   <style>
     #counter {
       width: 100px;
@@ -53,6 +54,7 @@
     }
   };
 
+// clearTimeout stops the interval from increasing each time the mouse enters the element
   function stoptimer()
   {
     clearTimeout(set);

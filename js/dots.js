@@ -1,4 +1,5 @@
-
+//This file creates dots which follows mouse movement across the screen helping to
+//map the most common mouse positions on a webpage
 (function() {
   //"use strict";
 
