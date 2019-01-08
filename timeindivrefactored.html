@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!-- This page calculates each time the mouse enters a div -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mouse Time In Div - To Work for all divs</title>
+  <style>
+    #counter {
+      width: 100px;
+      height: 100px;
+      background-color: blue;
+    }
+
+    #counter2 {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+    }
+
+    #counter3 {
+      width: 100px;
+      height: 100px;
+      background-color: green;
+    }
+  </style>
+
+<script type="text/javascript" src="js/time.js"></script>
+
+</head>
+<body>
+<div id="counter" onmouseenter="timer(this)"; onmouseleave="stoptimer(this)">
+  0
+</div>
+<div id="counter2" onmouseenter="timer(this)"; onmouseleave="stoptimer(this)">
+0
+</div>
+
+<div id="counter3" onmouseenter="timer(this)"; onmouseleave="stoptimer(this)">
+0
+</div>
+
+<script src="js/getdivs.js"></script>
+</body>
+</html>
