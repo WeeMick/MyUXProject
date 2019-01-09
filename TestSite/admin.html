@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Web Admin Page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 550px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+        
+    /* On small screens, set height to 'auto' for the grid */
+    @media screen and (max-width: 767px) {
+      .row.content {height: auto;} 
+    }
+  </style>
+</head>
+<body>
+<div class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-3 sidenav hidden-xs">
+      <h2>Web Analytics</h2>
+      <ul class="nav nav-pills nav-stacked">
+        <li class="active"><a href="#section1">Dashboard</a></li>
+        <li><a href="#section2">Analysis</a></li>
+        <li><a href="rawData.html" id="rawData">View Raw Data</a></li>
+        <li><a id="exitBtn" href="index.html">Exit Admin</a></li>
+      </ul><br>
+    </div>
+    <br>
+    <section id="dash" class="d-block">
+    <div class="col-sm-9">
+      <div class="well">
+        <h4>Dashboard</h4>
+        <p>Overview of User Interaction Data</p>
+      </div>
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="well">
+            <h4>User</h4>
+            <p id="userRef">User 1</p> 
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="well">
+            <h4>Total Clicks</h4>
+            <p id="totalClicks">0</p> 
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="well">
+            <h4>Total Time</h4>
+            <p>Last event 20302.03</p> 
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="well">
+            <h4>Most Active target</h4>
+            <p>Element: id</p> 
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="well">
+            <h4>Total MouseOvers</h4>
+            <p id="totalMouseOvers">0</p> 
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="well">
+              <h4>Total Double Clicks</h4>
+              <p id="totalDblClicks">0</p>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="well">
+              <h4>Task 3</h4>
+              <p id="task3Time">Completion Time</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-8">
+          <div class="well">
+              <h4>All Click Events</h4>
+              <p id="All clicks">All Click Events</p> 
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="well">
+              <h4>Missed Button Clicks</h4>
+              <p id="missedClicks">2</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="allData" class="hidden-md hidden-lg">
+  <h1>All Raw Data</h1>
+</section>
+
+
+<footer>  
+  <script type="text/javascript">
+
+    var totalString = localStorage.getItem('clicksTotal');
+    var total = -1;
+    if (totalString!=null){
+            total = parseInt(totalString, 10);
+          }
+          document.getElementById('totalClicks').innerHTML = total+1;
+
+
+          totalString = localStorage.getItem('mouseOversTotal');
+          if (totalString!=null){
+            total = parseInt(totalString, 10);
+          }
+          document.getElementById('totalMouseOvers').innerHTML = total+1;
+
+          totalString = localStorage.getItem('dblClicksTotal');
+          if (totalString!=null){
+            var total = parseInt(totalString, 10);
+          }
+          document.getElementById('totalDblClicks').innerHTML = total+1;
+
+
+
+
+
+          document.getElementById('exitBtn').addEventListener('click', clearData, false)
+
+          function clearData() {
+            localStorage.clear();
+          }
+    </script>
+
+</footer>
+
+</body>
+</html>

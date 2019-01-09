@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    table, th, tr, td {
+      border: 1px solid black;
+    }
+
+  </style>
+</head>
+<body>
+  <table id="tblData">
+    <th>Extracted Data</th>
+    <tr>
+      <td>Element</td>
+      <td>No of Clicks</td>
+      <td>Mouseover Time</td>
+    </tr>
+    <tr>
+      <td>Nav</td>
+      <td>13</td>
+      <td>76</td>
+    </tr>
+    <tr>
+      <td>Main</td>
+      <td>400</td>
+      <td>680</td>
+    </tr>
+    <tr>
+      <td>Footer</td>
+      <td>12</td>
+      <td>27</td>
+    </tr>
+
+    </table>
+
+
+<button onclick="exportTableToExcel('tblData')">Export</button>
+
+<script>
+  // var tableidArray = document.getElementsByTagName('table');
+  // var tableid = tableidArray[0].id;
+
+  function exportTableToExcel(tableid, filename = ''){
+
+      var downloadLink;
+      var dataType = 'application/vnd.ms-excel';
+      var tableSelect = document.getElementById(tableid);
+      var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+
+      // Specify file name
+      filename = filename?filename+'.xls':'excel_data.xls';
+
+      // Create download link element
+      downloadLink = document.createElement("a");
+
+      document.body.appendChild(downloadLink);
+
+      if(navigator.msSaveOrOpenBlob){
+          var blob = new Blob(['\ufeff', tableHTML], {
+              type: dataType
+          });
+          navigator.msSaveOrOpenBlob( blob, filename);
+      }else{
+          // Create a link to the file
+          downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+
+          // Setting the file name
+          downloadLink.download = filename;
+
+          //triggering the function
+          downloadLink.click();
+      }
+  }
+</script>
+</body>
+</html>

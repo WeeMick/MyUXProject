@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+</head>
+<body>
+<button onclick="testOutput()">Click</button>
+<div id="output">
+  Output should go here
+</div>
+
+<div id="output2">
+  check
+</div>
+<script>
+  function testOutput() {
+    document.getElementById('output2').innerHTML = "working!!!!!!!";
+  var textFile = null,
+  makeTextFile = function (text) {
+    console.log("hjhjhj");
+  var data = new Blob([text], {type: 'text/plain'});
+
+  // If we are replacing a previously generated file we need to
+  // manually revoke the object URL to avoid memory leaks.
+  if (textFile !== null) {
+    window.URL.revokeObjectURL(textFile);
+  }
+
+  textFile = window.URL.createObjectURL(data);
+
+  // returns a URL you can use as a href
+
+};
+}
+</script>
+</body>
+</html>

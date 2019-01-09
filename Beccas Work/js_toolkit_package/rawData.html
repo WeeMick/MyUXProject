@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 550px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+        
+    /* On small screens, set height to 'auto' for the grid */
+    @media screen and (max-width: 767px) {
+      .row.content {height: auto;} 
+    }
+  </style>
+</head>
+<body>
+        <div class="container-fluid">
+                <div class="row content">
+                  <div class="col-sm-3 sidenav hidden-xs">
+                    <h2>Web Analytics</h2>
+                    <ul class="nav nav-pills nav-stacked">
+                      <li class="active"><a href="admin.html">Dashboard</a></li>
+                      <li><a href="#section2">Analysis</a></li>
+                      <li><a href="rawData.html" id="rawData">View Raw Data</a></li>
+                      <li><a id="exitBtn" href="index.html">Exit Admin</a></li>
+                    </ul><br>
+                  </div>
+                  <br>
+    <section id="rawData" class="d-block">
+    <div class="col-sm-9">
+      <div class="well">
+        <h4>View Raw Data</h4>
+        <p>All User Data</p>
+        <h4 class="text-info">MouseClick Event Data</h5>
+            <table id="clickTable" class="table table-striped table-bordered">
+                    <tr>
+                            <th>Element</th>
+                            <th>Time of Click</th> 
+                    </tr>
+            </table>
+        <br>
+        <h4 class="text-info">MouseOver Event Data</h5>
+            <table id="mouseOverTable" class="table table-striped table-bordered">
+                    <tr>
+                            <th>Element</th>
+                            <th>Time of Click</th> 
+                    </tr>
+            </table>
+            <br>
+        <h4 class="text-info">Double Clicks Event Data</h5>
+            <table id="dblClicksTable" class="table table-striped table-bordered">
+                    <tr>
+                            <th>Element</th>
+                            <th>Time of Click</th> 
+                    </tr>
+            </table>
+
+      </div>
+      <footer>
+          <script type="text/javascript">
+
+            //Displays Mouse Click Data
+            var totalStr = localStorage.getItem('clicksTotal');
+            var total = parseInt(totalStr, 10);
+            for(var i=0;i<total+1;i++)
+            {
+                var record = "record" + i;
+            let myObj_deserialized = JSON.parse(localStorage.getItem(record));
+           var element = myObj_deserialized.element;
+           var time = myObj_deserialized.eventTime;
+           var s =  '<tr>' +
+                            '<th>' + element + '</th>' +
+                            '<th>' + time + '</th>' + 
+                        '</tr>';
+            document.getElementById('clickTable').innerHTML += s;
+            console.log(myObj_deserialized);
+            }
+
+            //Displays MouseOver Data
+
+             var totalStr = localStorage.getItem('mouseOversTotal');
+            var total = parseInt(totalStr, 10);
+            for(var i=0;i<total+1;i++)
+            {
+                var record = "mouseOverRecord" + i;
+            let myObj_deserialized = JSON.parse(localStorage.getItem(record));
+           var element = myObj_deserialized.element;
+           var time = myObj_deserialized.eventTime;
+           var s =  '<tr>' +
+                            '<th>' + element + '</th>' +
+                            '<th>' + time + '</th>' + 
+                        '</tr>';
+            document.getElementById('mouseOverTable').innerHTML += s;
+            console.log(myObj_deserialized);
+            }
+
+        
+
+            //Displays DblClick Event data
+             var totalStr = localStorage.getItem('dblClicksTotal');
+            var total = parseInt(totalStr, 10);
+            for(var i=0;i<total+1;i++)
+            {
+                var record = "dblClickRecord" + i;
+            let myObj_deserialized = JSON.parse(localStorage.getItem(record));
+           var element = myObj_deserialized.element;
+           var time = myObj_deserialized.eventTime;
+           var s =  '<tr>' +
+                            '<th>' + element + '</th>' +
+                            '<th>' + time + '</th>' + 
+                        '</tr>';
+            document.getElementById('dblClicksTable').innerHTML += s;
+            console.log(myObj_deserialized);
+            }
+
+            document.getElementById('exitBtn').addEventListener('click', clearData, false)
+
+            function clearData() {
+            localStorage.clear();
+            }
+
+
+
+            
+        </script>
+
+
+<button onclick="exportTableToExcel('dblClicksTable', 'dblClicks')">Export Double Clicks</button>
+<button onclick="exportTableToExcel('mouseOverTable', 'mouseOvers')">Export MouseOvers</button>
+<button onclick="exportTableToExcel('clickTable', 'clickEvents')">Export Click Events</button>
+
+<script>
+  // var tableidArray = document.getElementsByTagName('table');
+  // var tableid = tableidArray[0].id;
+
+  function exportTableToExcel(tableid, filename = ''){
+
+      var downloadLink;
+      var dataType = 'application/vnd.ms-excel';
+      var tableSelect = document.getElementById(tableid);
+      var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+
+      // Specify file name
+      filename = filename?filename+'.xls':'excel_data.xls';
+
+      // Create download link element
+      downloadLink = document.createElement("a");
+
+      document.body.appendChild(downloadLink);
+
+      if(navigator.msSaveOrOpenBlob){
+          var blob = new Blob(['\ufeff', tableHTML], {
+              type: dataType
+          });
+          navigator.msSaveOrOpenBlob( blob, filename);
+      }else{
+          // Create a link to the file
+          downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+
+          // Setting the file name
+          downloadLink.download = filename;
+
+          //triggering the function
+          downloadLink.click();
+      }
+  }
+</script>
+      </footer>
+
+      </body>
+      </html>

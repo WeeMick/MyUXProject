@@ -1,0 +1,51 @@
+
+How to Use the JavaScript Toolkit
+
+
+STEP 1: ADD CLASSES TO YOUR TARGET HTML ELEMENTS
+
+    Available Classes:
+
+	mouseClick - returns time of click on element and total clicks on each element (<h1 class="mouseClick">)
+	dblClick - returns time of dblClick on element and total clicks on each element (<p class="dblClick">
+	mouseOver - returns time of mouseOver event on element and total mouseovers for each element(<img class="mouseOver">)
+	timer - returns length of time user mouse is over an element (<div class="timer">)
+
+STEP 2: ADD adminPageBtn TO YOUR TARGET PAGE (So that you can access our admin data panel)
+
+	(Just copy and paste from below or add your own using id="adminPageBtn")
+
+	<a href="admin.html" class="btn" id="adminPageBtn">Go to Admin Page</a>
+
+STEP 3: ADD OUR SCRIPTS TO YOUR PAGE
+
+	Simply add to the footer of your page and make sure your file location matches the src of our default package structure
+
+      		 <script type="text/javascript" src="scripts/modelDblClick.js"></script>
+       		<script type="text/javascript" src="scripts/modelClicks.js"></script>
+       		<script type="text/javascript" src="scripts/modelMouseOvers.js"></script>
+       		<script type="text/javascript" src="scripts/timer.js"></script>
+       		<script type="text/javascript" src="scripts/controller.js"></script>
+
+(STEP 4: GATHER YOUR DATA)
+
+	Our admin panel gives an overview of all the data gathered, as well as allowing you to access all of the raw data that is
+	logged. You can also export data to an excel file (with a click of a button) to keep it safe for future reference.
+
+
+
+
+What this toolkit offers
+
+Flexibility
+
+Instead of gathering data for all elements on your site (and having to sort through every piece of data
+for the information you're actually looking for) simply add one or more of the available classess
+to the class attribute of any html element and the toolkit will do the rest. This feature ensures your data
+gathering is targeted and flexible to your needs. Designing an experiment? This will allow you to refine
+your data results and ensure you can be in control of all the contents and styling on your page without 
+any restrictions.
+
+Reusability
+
+Follow our simple 3 step set-up process and the toolkit will work with any page. 
